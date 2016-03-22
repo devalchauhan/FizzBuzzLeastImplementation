@@ -18,14 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.ary_Numbers = [[NSMutableArray alloc] init];
-    for (int i=1; i<=100; i++) {
-        NSString *str = [self Check:i];
-        [self.ary_Numbers addObject:str];
-        NSLog(@"%@\n",str);
-    }
+    int i=1;
+    [self Check:i];
 }
 
--(NSString*)Check:(int)i
+-(void)Check:(int)i
 {
     NSString *str;
     if(i%3==0)
@@ -36,8 +33,15 @@
         str= [NSString stringWithFormat:@"FizzBuzz"];
     if (i%3!=0&&i%5!=0)
         str= [NSString stringWithFormat:@"%i",i];
-    
-    return str;
+    [self.ary_Numbers addObject:str];
+    NSLog(@"%@\n",str);
+    if (i>99) {
+        [self.tbl_Numers reloadData];
+    }
+    else {
+        i++;
+        [self Check:i];
+    }
 }
 
 #pragma mark UITableView Delegates
