@@ -19,31 +19,25 @@
     [super viewDidLoad];
     self.ary_Numbers = [[NSMutableArray alloc] init];
     for (int i=1; i<=100; i++) {
-        if (i%3==0&&i%5==0) {
-            NSString *str= [NSString stringWithFormat:@"FizzBuzz"];
-            
-            [self.ary_Numbers addObject:str];
-        }
-        else if(i%3==0)
-        {
-            NSString *str= [NSString stringWithFormat:@"Fizz"];
-            
-            [self.ary_Numbers addObject:str];
-        }
-        else if(i%5==0)
-        {
-            NSString *str= [NSString stringWithFormat:@"Buzz"];
-            
-            [self.ary_Numbers addObject:str];
-        }
-        else
-        {
-            NSString *str= [NSString stringWithFormat:@"%i",i];
-            
-            [self.ary_Numbers addObject:str];
-        }
-        
+        NSString *str = [self Check:i];
+        [self.ary_Numbers addObject:str];
+        NSLog(@"%@\n",str);
     }
+}
+
+-(NSString*)Check:(int)i
+{
+    NSString *str;
+    if(i%3==0)
+        str= [NSString stringWithFormat:@"Fizz"];
+    if(i%5==0)
+        str= [NSString stringWithFormat:@"Buzz"];
+    if (i%3==0&&i%5==0)
+        str= [NSString stringWithFormat:@"FizzBuzz"];
+    if (i%3!=0&&i%5!=0)
+        str= [NSString stringWithFormat:@"%i",i];
+    
+    return str;
 }
 
 #pragma mark UITableView Delegates
